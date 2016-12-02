@@ -4,7 +4,6 @@ import { Icon } from 'antd';
 export default class FancyImage extends Component {
     constructor(props) {
         super(props);
-        console.log('props in Image, rendered from GistCard', props); // first <Image /> is fine, second <Image /> is undefined.. why? 
         this.state = {
             src: props.src,
             loading: true

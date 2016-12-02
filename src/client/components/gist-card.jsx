@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { Col, Card } from 'antd';
 import InstallButton from './install-button';
-import FancyImage from './image';
+import FancyImage from './fancy-image';
 
 export default class GistCard extends Component {
     constructor(props) {
@@ -11,7 +11,6 @@ export default class GistCard extends Component {
 
     render() {
         const directLink = <Link to={`/gist/${this.props.id}`}>view</Link>;
-        console.log('this.props.image from GistCard', this.props.image);
         return (
                 <Col lg={8} md={8} sm={12} xs={24} style={{ padding: '1rem' }}>
                     <Card title={this.props.name} extra={directLink}>

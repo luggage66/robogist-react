@@ -27,6 +27,9 @@ export default class TopMenu extends Component {
                 <Menu.Item key="browse">
                     <Link to="/browse">browse</Link>
                 </Menu.Item>
+                <Menu.Item key="login">
+                    <Link to="/login">login</Link>
+                </Menu.Item>
             </Menu>
         );
     }

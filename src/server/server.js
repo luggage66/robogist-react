@@ -82,14 +82,19 @@ app.use(express.static(rootPath));
 
 app.get('/login/github', passport.authenticate('github'));
 // redirect? can I send back some json instead?
-app.get('/login/github/return', passport.authenticate('github', {failureRedirect: '/login'}), (req, res, next) => {
-	let path = '/';
-	if( req.session && req.session.redirectTo ) {
-		path = req.session.redirectTo;
-		delete req.session.redirectTo;
-	}
-	res.redirect(path);
+app.get('/login/github/return', (req, res, next) => {
+	passport.authenticate('github', (err, user, info) => {
+		res.end(`<script>opener.handlePopupClosure(${JSON.stringify(user)}); window.close();</script>`)
+	})(req, res, next);
 });
+// app.get('/login/github/return', passport.authenticate('github', ({failureRedirect: '/login'})), (req, res, next) => {
+// 	let path = '/';
+// 	if( req.session && req.session.redirectTo ) {
+// 		path = req.session.redirectTo;
+// 		delete req.session.redirectTo;
+// 	}
+// 	res.redirect(path);
+// });
 
 app.post('/logout', (req, res, next) => {
 	req.session.destroy();
@@ -120,4 +125,4 @@ app.use((req, res, next) => {
 	});
 });
 
-app.listen(8000, console.log.bind(console, 'app listening on 8000'));
+app.listen(7321, console.log.bind(console, 'app listening on 7321'));

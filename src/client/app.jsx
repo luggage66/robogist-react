@@ -5,6 +5,7 @@ import { Row, Col } from 'antd';
 import TopMenu from './components/top-menu';
 
 import './style.scss';
+
 import logoImage from './logo.png';
 
 import pages from './pages';

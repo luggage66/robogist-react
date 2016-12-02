@@ -26,7 +26,7 @@ function getGists() {
         name: `Gist #${id}`,
         description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         matches: '.*',
-        image: `http://lorempizza.com/2400/1200/${id}`,
+        image: `http://lorempizza.com/240/120/${id}`,
         url: 'http://example.com',
         username: 'rlemon'
     });
