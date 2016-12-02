@@ -38,6 +38,7 @@ function makeDataWrapperComponent(Component) {
             }
 
             bluebird.props(data).then(data => {
+                //this.data = Object.assign(data, this.props);
                 this.data = data;
                 this.dataLoaded = true;
             });
@@ -79,7 +80,6 @@ function makeDataWrapperComponent(Component) {
                 return <Component {...this.data} />;
             }
             else {
-                console.log('loading');
                 return (
                     <div style={{textAlign: 'center', margin: 100}} >
                         <Spin />

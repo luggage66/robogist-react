@@ -3,7 +3,6 @@ import {Router} from 'express';
 const router = Router();
 
 function loggedIn(req, res, next) {
-	console.log( req );
 	if( !( 'user' in req ) ) {
 		return res.json({error: 'not authorized'})
 	}
@@ -20,7 +19,7 @@ router.post('/bar', (req, res) => {
 	res.json({data: 'got bar'});
 });
 
-router.post('/user/info', loggedIn, (req, res) => {
+router.get('/user/info', loggedIn, (req, res) => {
 	res.json({data: req.user});
 })
 

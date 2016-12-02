@@ -101,10 +101,17 @@ app.get('/login/github/return', passport.authenticate('github', ({failureRedirec
 	// 	delete req.session.redirectTo;
 	// }
 	// res.redirect(path);
-	res.redirect('/profile');
+	res.setHeader('Content-Type', 'text/html');
+	res.end(`<script>opener.authenticationCompleteCallback(); window.close();</script>`);
 });
 
+// app.get('/profile', (req, res) => {
+// 	res.json(req.user);
+// })
+
 app.post('/logout', (req, res, next) => {
+	console.log('logging out');
+	req.logout();
 	req.session.destroy();
 	res.json({message: 'successful'});
 });
