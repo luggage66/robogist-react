@@ -1,0 +1,18 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', serif;
+}
+
+.page-wrapper {
+	width: 1149px;
+	margin: 0 auto;
+}
+
+.page-header {
+	padding: 16px 0;
+}
