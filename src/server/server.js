@@ -84,6 +84,7 @@ app.get('/login/github', passport.authenticate('github'));
 // redirect? can I send back some json instead?
 app.get('/login/github/return', (req, res, next) => {
 	passport.authenticate('github', (err, user, info) => {
+		// I don't actually need to pass anything here.. but I can.
 		res.end(`<script>opener.handlePopupClosure(${JSON.stringify(user)}); window.close();</script>`)
 	})(req, res, next);
 });
