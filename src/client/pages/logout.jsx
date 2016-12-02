@@ -9,7 +9,9 @@ export default class LogoutPage extends Component {
 			method: 'POST',
 			credentials: 'same-origin' 
 		}).then(results => {
-			console.log( 'redirect the user here' );
+			// should redirect the user and change the loggedIn state on App
+			// but I don't konw how to do that. 
+			window.location = '/';
 		})
 	}
     render() {

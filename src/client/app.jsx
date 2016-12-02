@@ -34,6 +34,9 @@ export default class App extends Component {
 	}
 	handleAuthenticationChange(message) {
 		this.setState({loggedIn: true});
+		// should be redirecting them with React crap.. 
+		// but I don't know how to do that. 
+		window.location = '/';
 	}
 	componentWillMount() {
 		window.authenticationCompleteCallback = msg => this.handleAuthenticationChange(msg); // this doesn't check shit. just waits for a response. fix
