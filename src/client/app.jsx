@@ -19,11 +19,9 @@ export default class App extends Component {
 		}
 	}
 	componentWillMount() {
-		window.handlePopupClosure = message => {
-			const newState = {loggedIn: true};
-			console.log('updating state of App', newState);
-			this.setState(newState);
-			console.log('new state', this.state);
+		window.handlePopupClosure = data => {
+			console.log('popup returned', data );
+			this.setState({loggedIn: true});
 		};
 	}
 	render() {

@@ -8,28 +8,36 @@ export default class TopMenu extends Component {
         super(props);
 
         const [,pathname = 'home'] = location.pathname.match(/^\/(\w+)/) || [];
-        console.log( 'topmenu props in constructor', props );
         this.state = {
             current: pathname,
-            loggedIn: props.loggedIn
         };
     }
     handleClick(e) {
         this.setState({
             current: e.key
         });
-        console.log( this.state );
     }
     render() {
-        let authlink =  (<Menu.Item key="login">
-                            <Link to="/login">login</Link>
-                        </Menu.Item>);
-        if( this.state.loggedIn ) {
-            authlink =  (<Menu.Item key="logout">
-                            <Link to="/logout">logout</Link>
-                        </Menu.Item>);
-        }
-        console.log('rendering topMenu with state: ', this.state)
+        const logoutLink = (
+            <Menu.Item key="logout">
+                <Link to="/logout">logout</Link>
+            </Menu.Item>
+        );
+
+        const loginLink = (
+            <Menu.Item key="login">
+                <Link to="/login">login</Link>
+            </Menu.Item>
+        );
+
+        const profileLink = (
+            <Menu.Item key="profile">
+                <Link to="/profile">profile</Link>
+            </Menu.Item>
+        );
+
+        const loggedInLinks = [profileLink, logoutLink];
+
         return (
             <Menu mode="horizontal" key="menu" selectedKeys={[this.state.current]} onClick={e=>this.handleClick(e)}>
                 <Menu.Item key="home">
@@ -39,7 +47,7 @@ export default class TopMenu extends Component {
                     <Link to="/browse">browse</Link>
                 </Menu.Item>
 
-                {authlink}
+                {this.props.loggedIn ? loggedInLinks : loginLink}
             </Menu>
         );
     }

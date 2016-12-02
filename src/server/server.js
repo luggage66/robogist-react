@@ -79,27 +79,34 @@ app.use(passport.session());
 app.use(express.static(rootPath));
 
 /* auth endpoints */
-
+// FUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUK (┛ಸ_ಸ)┛彡┻━┻
 app.get('/login/github', passport.authenticate('github'));
 // redirect? can I send back some json instead?
-app.get('/login/github/return', (req, res, next) => {
-	passport.authenticate('github', (err, user, info) => {
-		// I don't actually need to pass anything here.. but I can.
-		res.end(`<script>opener.handlePopupClosure(${JSON.stringify(user)}); window.close();</script>`)
-	})(req, res, next);
-});
-// app.get('/login/github/return', passport.authenticate('github', ({failureRedirect: '/login'})), (req, res, next) => {
-// 	let path = '/';
-// 	if( req.session && req.session.redirectTo ) {
-// 		path = req.session.redirectTo;
-// 		delete req.session.redirectTo;
-// 	}
-// 	res.redirect(path);
+// app.post('/login/github/return', (req, res, next) => {
+// 	passport.authenticate('github', (err, user, info) => {
+// 		if( err ) return next( err );
+// 		req.login(user, err => {
+// 			if( err ) return next( err );
+// 			console.log('here');
+// 			res.json({message: 'authenticated'});
+// 			//res.end(`<script>opener.handlePopupClosure(${JSON.stringify({detail: info})}); window.close();</script>`)
+// 		});
+// 		// I don't actually need to pass anything here.. but I can.
+// 	})(req, res, next);
 // });
+app.get('/login/github/return', passport.authenticate('github', ({failureRedirect: '/login'})), (req, res, next) => {
+	// let path = '/';
+	// if( req.session && req.session.redirectTo ) {
+	// 	path = req.session.redirectTo;
+	// 	delete req.session.redirectTo;
+	// }
+	// res.redirect(path);
+	res.redirect('/profile');
+});
 
 app.post('/logout', (req, res, next) => {
 	req.session.destroy();
-	res.redirect('/');
+	res.json({message: 'successful'});
 });
 
 /*
