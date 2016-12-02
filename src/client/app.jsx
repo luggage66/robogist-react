@@ -14,8 +14,18 @@ export default class App extends Component {
 
 	constructor(props) {
 		super(props);
+		this.state = {
+			loggedIn: false
+		}
 	}
-
+	componentWillMount() {
+		window.handlePopupClosure = message => {
+			const newState = {loggedIn: true};
+			console.log('updating state of App', newState);
+			this.setState(newState);
+			console.log('new state', this.state);
+		};
+	}
 	render() {
 		return (
 			<BrowserRouter>
@@ -27,7 +37,7 @@ export default class App extends Component {
 						</Col>
 						<Col lg={20} md={16} sm={16} xs={24}>
 							
-							<TopMenu />
+							<TopMenu loggedIn={this.state.loggedIn} />
 
 						</Col>
 					</Row>
