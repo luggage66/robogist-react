@@ -47,12 +47,12 @@ export default class App extends Component {
 		return { currentUser: this.state.currentUser };
 	}
 
-	handleAuthenticationChange(state) {
+	handleAuthenticationChange() {
 		App.getUserInfo().then(userInfo => this.setState({ currentUser: userInfo }));
 	}
 
 	componentWillMount() {
-		window.authenticationCompleteCallback = msg => this.handleAuthenticationChange(true); // this doesn't check shit. just waits for a response. fix
+		window.authenticationCompleteCallback = _ => this.handleAuthenticationChange(); // this doesn't check shit. just waits for a response. fix
 	}
 
 	render() {
