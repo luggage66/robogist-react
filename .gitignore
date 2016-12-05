@@ -44,3 +44,5 @@ lib/
 # configs
 secrets.json
 sftp-config.json
+# just in case
+config.json

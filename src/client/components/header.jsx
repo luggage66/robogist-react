@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import { Menu } from 'antd';
+import { Menu, Col } from 'antd';
 
+import logoImage from '../logo.png';
 
 export default class TopMenu extends Component {
     constructor(props) {
@@ -39,16 +40,25 @@ export default class TopMenu extends Component {
         const loggedInLinks = [profileLink, logoutLink];
 
         return (
-            <Menu mode="horizontal" key="menu" selectedKeys={[this.state.current]} onClick={e=>this.handleClick(e)}>
-                <Menu.Item key="home">
-                    <Link to="/">home</Link>
-                </Menu.Item>
-                <Menu.Item key="browse">
-                    <Link to="/browse">browse</Link>
-                </Menu.Item>
+            <div>
+                <Col lg={4} md={6} sm={24} xs={24}>
+                    <Link to="/">
+                        <img src={logoImage} /> ROBOGIST STORE
+                    </Link>
+                </Col>
+                <Col lg={20} md={18} sm={17} xs={24} style={{display: 'block'}}>
+                    <Menu mode="horizontal" key="menu" selectedKeys={[this.state.current]} onClick={e=>this.handleClick(e)}>
+                        <Menu.Item key="home">
+                            <Link to="/">home</Link>
+                        </Menu.Item>
+                        <Menu.Item key="browse">
+                            <Link to="/browse">browse</Link>
+                        </Menu.Item>
 
-                {this.props.loggedIn ? loggedInLinks : loginLink}
-            </Menu>
+                        {this.props.loggedIn ? loggedInLinks : loginLink}
+                    </Menu>
+                </Col>
+            </div>
         );
     }
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { BrowserRouter, Link, browserHistory } from 'react-router';
 import { Row, Col } from 'antd';
-import TopMenu from './components/top-menu';
+import Header from './components/header';
 
 import { page } from './dataLoading';
 
@@ -52,22 +52,12 @@ export default class App extends Component {
 		return (
 			<BrowserRouter>
 				<div className="page-wrapper">
-
 					<Row className="page-header">
-						<Col lg={4} md={8} sm={8} xs={0}>
-							<img src={logoImage} />
-						</Col>
-						<Col lg={20} md={16} sm={16} xs={24}>
-							
-							<TopMenu loggedIn={this.state.loggedIn} />
-
-						</Col>
+						<Header loggedIn={this.state.loggedIn} />
 					</Row>
-
 					<Row className="page-content">
 						<Pages loggedIn={this.state.loggedIn} authenticationRevokedHandler={_ => this.handleAuthenticationChange(false)} />
 					</Row>
-
 				</div>
 			</BrowserRouter>
 		);

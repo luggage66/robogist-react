@@ -12,7 +12,7 @@ export default class GistCard extends Component {
     render() {
         const directLink = <Link to={`/gist/${this.props.id}`}>view</Link>;
         return (
-                <Col lg={8} md={8} sm={12} xs={24} style={{ padding: '1rem' }}>
+                <Col lg={8} md={11} sm={17} xs={17} style={{ padding: '1rem' }}>
                     <Card title={this.props.name} extra={directLink}>
                         <FancyImage src={this.props.image} />
                         <p>
