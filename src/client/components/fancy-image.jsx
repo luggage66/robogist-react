@@ -20,6 +20,6 @@ export default class FancyImage extends Component {
         if( this.state.loading ) {
             return <Icon type="loading" spin="true" />;
         }
-        return <img src={this.state.src}/>
+        return <img src={this.state.src} {...this.props} />
     }
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { BrowserRouter, Link } from 'react-router';
+import { BrowserRouter, Link, browserHistory } from 'react-router';
 import { Row, Col } from 'antd';
 import TopMenu from './components/top-menu';
 
@@ -10,7 +10,7 @@ import './style.scss';
 
 import logoImage from './logo.png';
 
-import pages from './pages';
+import Pages from './pages';
 
 async function getUserInfo() {
     const response = await fetch('/api/user/info', { method: 'GET', credentials: 'same-origin' });
@@ -32,14 +32,11 @@ export default class App extends Component {
 			loggedIn: !('error' in this.props.user)
 		};
 	}
-	handleAuthenticationChange(message) {
-		this.setState({loggedIn: true});
-		// should be redirecting them with React crap.. 
-		// but I don't know how to do that. 
-		window.location = '/';
+	handleAuthenticationChange(state) {
+		this.setState({loggedIn: state});
 	}
 	componentWillMount() {
-		window.authenticationCompleteCallback = msg => this.handleAuthenticationChange(msg); // this doesn't check shit. just waits for a response. fix
+		window.authenticationCompleteCallback = msg => this.handleAuthenticationChange(true); // this doesn't check shit. just waits for a response. fix
 	}
 	render() {
 		return (
@@ -58,7 +55,7 @@ export default class App extends Component {
 					</Row>
 
 					<Row className="page-content">
-						{pages}
+						<Pages loggedIn={this.state.loggedIn} authenticationRevokedHandler={_ => this.handleAuthenticationChange(false)} />
 					</Row>
 
 				</div>

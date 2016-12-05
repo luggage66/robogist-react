@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { page } from '../dataLoading';
+import { Row, Col, Card } from 'antd';
+import FancyImage from '../components/fancy-image';
 
 async function getUserInfo() {
     const response = await fetch('/api/user/info', { method: 'GET', credentials: 'same-origin' });
@@ -25,7 +27,18 @@ export default class UserProfilePage extends Component {
             return <div>{this.props.user.error}</div>;
         }
         return (
-            <div>{JSON.stringify(this.props.user.data)}</div>
+            <div>
+                <Row>
+                    <Col lg={4} md={4} sm={4} xs={0}>
+                        <FancyImage src="http://lorempizza.com/400/400" style={{borderRadius: '50%', width: '100%'}} />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col offset={1} lg={4} md={6} sm={6} xs={24}>
+                        <h1>{this.props.user.data[0].login}</h1>
+                    </Col>
+                </Row>
+            </div>
         );
     }
 }
