@@ -13,7 +13,6 @@ const runSequence = require('run-sequence');
 const paths = {
     src: 'src/@(server|shared|reports|svgCharts)/**/*.{js,jsx}',
     dest: 'lib',
-    config: 'src/**/*.json',
     clientDest: 'lib/static'
 };
 
@@ -43,16 +42,12 @@ gulp.task('build-all', ['build-server', 'build-client']);
 
 // build server
 gulp.task('build-server', () => {
-    return require('event-stream').merge([
-        gulp.src(paths.src)
+    return gulp.src(paths.src)
         .pipe(changed(paths.dest))
         .pipe(sourcemaps.init())
         .pipe(babel())
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(paths.dest)),
-        gulp.src(paths.config)
-        .pipe(gulp.dest(paths.dest))
-    ])
+        .pipe(gulp.dest(paths.dest));
 });
 
 gulp.task('build-client', () => {
