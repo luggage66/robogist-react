@@ -41,6 +41,6 @@ dist/
 static/
 lib/
 
-# configs 
-config.json
+# configs
+secrets.json
 sftp-config.json

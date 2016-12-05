@@ -61,6 +61,7 @@
     "mobx-react": "^3.5.5",
     "passport": "^0.3.2",
     "passport-github": "^1.1.0",
+    "pg": "^6.1.0",
     "react": "15.3.x",
     "react-bootstrap": "^0.30.6",
     "react-dom": "15.3.x",

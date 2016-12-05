@@ -7,7 +7,7 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import session from 'express-session';
 import query from './modules/db-promise';
-import config from './config.json';
+import config from './config';
 
 const app = express();
 const rootPath = `${__dirname}/../../static`; // up to lib, I start it from /lib/server
@@ -23,7 +23,7 @@ passport.deserializeUser((obj, cb) => {
 	if( !( 'oauthid' in obj ) ) return cb('invalid object', obj);
 	const params = {
 		text: `
-			SELECT 
+			SELECT
 				userid, oauthid ,login, gravatar_id, avatar_url, html_url, gists_url, email, blog, location,
 				CAST(joined as TEXT) as joined
 			FROM profile_details WHERE oauthid = $1
@@ -66,7 +66,7 @@ function createUser(profile, cb) {
 }
 
 /* parsers */
-app.use(cookieParser()); // do I need this for xhr/fetch only? 
+app.use(cookieParser()); // do I need this for xhr/fetch only?
 app.use(bodyParser.json());
 app.use(bodyParser({ extended: true }));
 app.use(session({ secret: config.sessionKey, resave: true, saveUninitialized: true }));

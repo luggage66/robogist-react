@@ -1,4 +1,4 @@
-const config = require('../config.json');
+const config = require('../config');
 const pg = require('pg');
 
 const client = new pg.Client(config.psqlConnectionString);
