@@ -1,6 +1,4 @@
-# this should be up to date
-
-CREATE DATABASE robgist;
+-- this should be up to date
 
 CREATE TABLE profile_details (
 	userid	SERIAL	PRIMARY KEY,
@@ -12,7 +10,7 @@ CREATE TABLE profile_details (
 	gists_url	TEXT,
 	email	VARCHAR(255),
 	blog	TEXT,
-	joined	DATE NOT NULL default CURRENT_DATE
+	joined	DATE NOT NULL default CURRENT_DATE,
 	location TEXT
 );
 
