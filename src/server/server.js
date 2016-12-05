@@ -110,10 +110,14 @@ app.get('/login/github/return', passport.authenticate('github', ({failureRedirec
 // })
 
 app.post('/logout', (req, res, next) => {
-	console.log('logging out');
+	if( !( 'user' in req ) ) {
+		return res.end();
+	}
+	next();
+}, (req, res, next) => {
 	req.logout();
 	req.session.destroy();
-	res.json({message: 'successful'});
+	res.json({});
 });
 
 /*

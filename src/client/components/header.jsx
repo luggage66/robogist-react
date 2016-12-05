@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import FancyImage from '../components/fancy-image';
 import { Menu, Col } from 'antd';
 
 import logoImage from '../logo.png';
 
 export default class TopMenu extends Component {
+    
+    static contentTypes = {
+        currentUser: React.PropTypes.object
+    }
+
     constructor(props) {
         super(props);
 
@@ -19,25 +25,30 @@ export default class TopMenu extends Component {
         });
     }
     render() {
-        const logoutLink = (
-            <Menu.Item key="logout">
+        const links = [];
+        console.log('rendering header');
+        if( this.props.loggedIn ) {
+            if( this.context.currentUser ) {
+                links.push(
+                <Menu.Item key="profile">
+                    <Link to="/profile">
+                        profile <FancyImage src={this.context.currentUser.avatar_url} style={{borderRadius: '50%', width: '48px' }}/>
+                    </Link>
+                </Menu.Item>
+                );
+            }
+            links.push(
+            <Menu.Item key="logout" style={{float: 'right'}}>
                 <Link to="/logout">logout</Link>
             </Menu.Item>
-        );
-
-        const loginLink = (
+            );
+        } else {
+            links.push(
             <Menu.Item key="login">
                 <Link to="/login">login</Link>
             </Menu.Item>
-        );
-
-        const profileLink = (
-            <Menu.Item key="profile">
-                <Link to="/profile">profile</Link>
-            </Menu.Item>
-        );
-
-        const loggedInLinks = [profileLink, logoutLink];
+            );
+        }
 
         return (
             <div>
@@ -54,8 +65,7 @@ export default class TopMenu extends Component {
                         <Menu.Item key="browse">
                             <Link to="/browse">browse</Link>
                         </Menu.Item>
-
-                        {this.props.loggedIn ? loggedInLinks : loginLink}
+                        {links}
                     </Menu>
                 </Col>
             </div>

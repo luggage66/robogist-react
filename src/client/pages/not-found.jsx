@@ -9,7 +9,7 @@ export default class NotFound extends Component {
     render() {
         return (
                 <div>
-                    request resource not found.
+                    requested resource not found.
                 </div>
         );
     }

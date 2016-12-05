@@ -10,7 +10,6 @@ import Pages from './pages';
 
 //non-JS
 import './style.scss';
-import logoImage from './logo.png';
 
 export default class App extends Component {
 
@@ -48,7 +47,8 @@ export default class App extends Component {
 	}
 
 	handleAuthenticationChange() {
-		App.getUserInfo().then(userInfo => this.setState({ currentUser: userInfo }));
+		console.log( 'updating state' );
+		App.getUserInfo().then(userInfo => this.setState({ currentUser: userInfo }, _ => console.log('state updateed')));
 	}
 
 	componentWillMount() {
