@@ -5,6 +5,10 @@ import dataStore from '../dataStore';
 import GistCard from '../components/gist-card';
 
 export default class HomePage extends Component {
+    static contextTypes = { //must declare which context things ou want
+        currentUser: React.PropTypes.object
+    }
+
     render() {
     	const gists = [];
     	for( const gist of dataStore.getGists() ) {
@@ -13,7 +17,11 @@ export default class HomePage extends Component {
     		);
     	}
         return (
-        	<Row>{gists}</Row>
+        	<Row>
+                Logged in as {this.context.currentUser ? this.context.currentUser.login : 'NO ONE'}
+                {gists}
+            </Row>
+
         );
     }
 }
