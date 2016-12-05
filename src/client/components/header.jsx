@@ -10,7 +10,7 @@ export default class TopMenu extends Component {
 
         const [,pathname = 'home'] = location.pathname.match(/^\/(\w+)/) || [];
         this.state = {
-            current: props.pathname || pathname,
+            current: pathname,
         };
     }
     handleClick(e) {
