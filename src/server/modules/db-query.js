@@ -1,5 +1,5 @@
-const config = require('../config');
-const pg = require('pg');
+import config from '../config';
+import pg from 'pg';
 
 const client = new pg.Client(config.psqlConnectionString);
 client.connect(err => {
