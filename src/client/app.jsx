@@ -47,8 +47,7 @@ export default class App extends Component {
 	}
 
 	handleAuthenticationChange() {
-		console.log( 'updating state' );
-		App.getUserInfo().then(userInfo => this.setState({ currentUser: userInfo }, _ => console.log('state updateed')));
+		App.getUserInfo().then(userInfo => this.setState({ currentUser: userInfo }));
 	}
 
 	componentWillMount() {

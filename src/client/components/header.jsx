@@ -13,10 +13,13 @@ export default class Header extends Component {
 
     constructor(props) {
         super(props);
-
         const [,pathname = 'home'] = location.pathname.match(/^\/(\w+)/) || [];
+        // this doesn't update on direct links to /login... 
+        // this is probably a better way to deal with this 
+        // if we can read this state just before render...
+        // but then it seems redundant I think
         this.state = {
-            current: pathname,
+            current: pathname === 'login' ? 'home' : pathname
         };
     }
     handleClick(e) {
