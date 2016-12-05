@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
 import { Row, Col, Card } from 'antd';
 import dataStore from '../dataStore';
 import GistCard from '../components/gist-card';

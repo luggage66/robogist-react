@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import { Link } from '../components/navigation';
 import { Col, Card } from 'antd';
 import InstallButton from './install-button';
 import FancyImage from './fancy-image';
@@ -27,4 +27,3 @@ export default class GistCard extends Component {
         );
     }
 }
-

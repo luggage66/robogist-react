@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
 import { Button } from 'antd';
 
 export default class InstallButton extends Component {
@@ -25,4 +24,3 @@ export default class InstallButton extends Component {
         );
     }
 }
-

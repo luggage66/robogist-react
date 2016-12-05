@@ -5,6 +5,8 @@ import App from './app';
 // import 'react-mdl/extra/material.css';
 // import 'react-mdl/extra/material.js';
 import 'antd/dist/antd.css';
+
+import { initializeRouting } from './routing';
 // make a root element to mount the app into
 let reactContainer = document.createElement('div');
 reactContainer.id = 'app-react-container';
@@ -13,6 +15,7 @@ document.body.appendChild(reactContainer);
 console.log('app booting');
 
 function saveAppInstance(appComponentInstance) {
+    initializeRouting(appComponentInstance);
     window.app = appComponentInstance; //useful for debugging.
 }
 

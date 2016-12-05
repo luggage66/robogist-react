@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
 import { page } from '../dataLoading';
 import { Row, Col, Card } from 'antd';
 import FancyImage from '../components/fancy-image';
@@ -22,7 +21,7 @@ export default class UserProfilePage extends Component {
 
     }
     render() {
-        
+
         if( 'error' in this.props.user ) {
             return <div>{this.props.user.error}</div>;
         }

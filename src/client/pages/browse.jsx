@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
 import { page } from '../dataLoading';
 
 async function getFoo() {
@@ -8,7 +7,7 @@ async function getFoo() {
     return json;
 }
 
-// waits for shit :D how awesome is that 
+// waits for shit :D how awesome is that
 @page({
     queries: {
         foo: _ => getFoo()

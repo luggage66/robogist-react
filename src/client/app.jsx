@@ -1,6 +1,5 @@
 //third prty JS
 import React, { Component } from 'react';
-import { BrowserRouter, Link, browserHistory } from 'react-router';
 import { Row, Col } from 'antd';
 
 //my JS
@@ -39,7 +38,9 @@ export default class App extends Component {
 		// from state. This is because the props.user can get out-of-date and
 		// we want to update it on-the-fly.
 		this.state = {
-			currentUser: props.user
+			currentUser: props.user,
+			currentComponent: () => <div>loading</div>,
+			currentComponentParams: undefined
 		};
 	}
 
@@ -55,18 +56,24 @@ export default class App extends Component {
 		window.authenticationCompleteCallback = msg => this.handleAuthenticationChange(true); // this doesn't check shit. just waits for a response. fix
 	}
 
+	setCurrentPage(component, props) {
+		console.log('setCurrentPage', component, props);
+		this.setState({
+			currentComponent: component,
+			currentComponentParams: props
+		});
+	}
+
 	render() {
 		return (
-			<BrowserRouter>
-				<div className="page-wrapper">
-					<Row className="page-header">
-						<Header loggedIn={!!this.state.currentUser} />
-					</Row>
-					<Row className="page-content">
-						<Pages loggedIn={!!this.state.currentUser} authenticationRevokedHandler={_ => this.handleAuthenticationChange(false)} />
-					</Row>
-				</div>
-			</BrowserRouter>
+			<div className="page-wrapper">
+				<Row className="page-header">
+					<Header loggedIn={!!this.state.currentUser} />
+				</Row>
+				<Row className="page-content">
+					<this.state.currentComponent {...this.state.currentComponentParams} loggedIn={!!this.state.currentUser} authenticationRevokedHandler={_ => this.handleAuthenticationChange(false)} />
+				</Row>
+			</div>
 		);
 	}
 }

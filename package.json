@@ -57,6 +57,7 @@
     "cookie-parser": "^1.4.3",
     "express-session": "^1.14.2",
     "gulp-webpack": "^1.5.0",
+    "history": "^4.4.1",
     "mobx": "^2.4.3",
     "mobx-react": "^3.5.5",
     "passport": "^0.3.2",
@@ -65,7 +66,7 @@
     "react": "15.3.x",
     "react-bootstrap": "^0.30.6",
     "react-dom": "15.3.x",
-    "react-router": "^4.0.0-alpha.6",
+    "route-recognizer": "^0.2.8",
     "run-sequence": "^1.2.2"
   }
 }
