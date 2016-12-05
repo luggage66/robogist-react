@@ -23,22 +23,14 @@ export default class UserProfilePage extends Component {
     }
     render() {
         
-        if( this.props.user.error ) {
+        if( 'error' in this.props.user ) {
             return <div>{this.props.user.error}</div>;
         }
+        const user = this.props.user.data[0];
         return (
-            <div>
-                <Row>
-                    <Col lg={4} md={4} sm={4} xs={0}>
-                        <FancyImage src="http://lorempizza.com/400/400" style={{borderRadius: '50%', width: '100%'}} />
-                    </Col>
-                </Row>
-                <Row>
-                    <Col offset={1} lg={4} md={6} sm={6} xs={24}>
-                        <h1>{this.props.user.data[0].login}</h1>
-                    </Col>
-                </Row>
-            </div>
+            <Row>
+                here be the user
+            </Row>
         );
     }
 }
