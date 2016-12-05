@@ -28,9 +28,19 @@ export default class App extends Component {
 
 	constructor(props) {
 		super(props);
+		// should I store 'user' in the state and pass it down to every page that needs it?
+		// or should I pull it every page. makes little sense to pull it every page, 
+		// but I'm still not 100% on what is allowed to go in state. 
 		this.state = {
 			loggedIn: !('error' in this.props.user)
 		};
+		/* is this kosher? 
+		there are a few pages that use some of this information.
+		if( this.state.loggedIn ) {
+			this.state.user = props.user.data[0];
+		}
+		*/
+
 	}
 	handleAuthenticationChange(state) {
 		this.setState({loggedIn: state});
