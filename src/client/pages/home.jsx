@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import { Row, Col, Card } from 'antd';
-import dataStore from '../dataStore';
-import GistCard from '../components/gist-card';
 
 export default class HomePage extends Component {
     // static contextTypes = { //must declare which context things ou want
@@ -11,18 +8,48 @@ export default class HomePage extends Component {
     //Logged in as {this.context.currentUser ? this.context.currentUser.login : 'NO ONE'}
 
     render() {
-    	const gists = [];
-    	for( const gist of dataStore.getGists() ) {
-    		gists.push(
-				<GistCard  key={gist.id} {...gist} />
-    		);
-    	}
+        const rows = [];
+        for( let i = 0; i < 12; i++ ) {
+            rows.push(
+                <tr key={i}>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            );
+        }
         return (
-        	<Row>
-                
-                {gists}
-            </Row>
-
+            <div>
+                <h3> Gist Store </h3>
+                <div className="table">
+                    <table>
+                    <thead>
+                        <tr>
+                        <th></th>{/* actions */}
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            ID
+                        </th>
+                        <th>
+                            Matches
+                        </th>
+                        <th>
+                            Description
+                        </th>
+                        <th></th>{/* vote or display if not logged in */}
+                        </tr>
+                    </thead>
+                    <tbody id="gist-list">
+                        {rows}
+                    </tbody>
+                    </table>
+                </div>
+            </div>
         );
     }
 }

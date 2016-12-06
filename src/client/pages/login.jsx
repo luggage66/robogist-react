@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { Button } from 'antd';
-
 
 export default class LoginPage extends Component {
 	constructor(props) {
@@ -12,7 +10,7 @@ export default class LoginPage extends Component {
     render() {
     	return (
             <div style={{textAlign: 'center'}}>
-            	<Button type="primary" onClick={_=>this.openLoginPopup()}>Login with GitHub</Button>
+            	<button onClick={_=>this.openLoginPopup()}>Login with GitHub</button>
             </div>
         );
     }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Icon } from 'antd';
 
 export default class FancyImage extends Component {
     constructor(props) {
@@ -18,7 +17,7 @@ export default class FancyImage extends Component {
     }
     render() {
         if( this.state.loading ) {
-            return <Icon type="loading" spin="true" />;
+            return <i className="fa fa-picture-o"></i>;
         }
         return <img src={this.state.src} {...this.props} />
     }

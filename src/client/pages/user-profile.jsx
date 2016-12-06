@@ -1,36 +1,37 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { page } from '../dataLoading';
-import { Row, Col, Card } from 'antd';
-import FancyImage from '../components/fancy-image';
 
-async function getUserInfo() {
-    const response = await fetch('/api/user/info', { method: 'GET', credentials: 'same-origin' });
-    const json = await response.json();
-    return json;
-}
+// async function getUserInfo() {
+//     const response = await fetch('/api/user/info', { method: 'GET', credentials: 'same-origin' });
+//     const json = await response.json();
+//     return json;
+// }
 
-@page({
-    queries: {
-        user: _ => getUserInfo()
-    }
-})
+// @page({
+//     queries: {
+//         user: _ => getUserInfo()
+//     }
+// })
 
 export default class UserProfilePage extends Component {
+    static contextTypes = {
+        currentUser: React.PropTypes.object
+    }
+
     constructor(props) {
         super(props);
 
     }
     render() {
-        
-        if( 'error' in this.props.user ) {
-            return <div>{this.props.user.error}</div>;
+        // not sure if this can be hit. we redirect on this page.
+        if( this.context.currentUser === null ) {
+            return <div>not authorized</div>
         }
-        const user = this.props.user.data[0];
+        
+        const user = this.context.currentUser;
         return (
-            <Row>
-                here be the user
-            </Row>
+            <div>{JSON.stringify(user)}</div>
         );
     }
 }

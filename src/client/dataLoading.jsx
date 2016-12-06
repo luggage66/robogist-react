@@ -2,7 +2,6 @@ import React from 'react';
 import { observable, asReference } from 'mobx';
 import { observer } from 'mobx-react';
 import bluebird from 'bluebird';
-import { Spin, Alert } from 'antd';
 
 // Will be added as a static function on the component
 function getQuery(queryName, queryArgs) {
@@ -82,7 +81,6 @@ function makeDataWrapperComponent(Component) {
             else {
                 return (
                     <div style={{textAlign: 'center', margin: 100}} >
-                        <Spin />
                         <p style={{padding: '1rem'}}>{messages[Math.floor(Math.random()*messages.length)]}</p>
                     </div>
                 );

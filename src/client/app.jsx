@@ -1,7 +1,6 @@
 //third prty JS
 import React, { Component } from 'react';
 import { BrowserRouter, Link, browserHistory } from 'react-router';
-import { Row, Col } from 'antd';
 
 //my JS
 import Header from './components/header';
@@ -57,14 +56,12 @@ export default class App extends Component {
 	render() {
 		return (
 			<BrowserRouter>
-				<div className="page-wrapper">
-					<Row className="page-header">
-						<Header loggedIn={!!this.state.currentUser} />
-					</Row>
-					<Row className="page-content">
+				<div className="wrapper">
+					<Header loggedIn={!!this.state.currentUser} />
+					<div className="inner-wrapper">
 						<Pages loggedIn={!!this.state.currentUser} authenticationRevokedHandler={_ => this.handleAuthenticationChange(false)} />
-					</Row>
-				</div>
+					</div>
+				</div> 
 			</BrowserRouter>
 		);
 	}
