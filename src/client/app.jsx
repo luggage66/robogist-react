@@ -19,7 +19,7 @@ export default class App extends Component {
 
 	// we use this to pre-fetch data, so it's static.
 	static async getUserInfo() {
-		const response = await fetch('/api/user/info', { method: 'GET', credentials: 'same-origin' });
+		const response = await fetch('/api/user/info', { method: 'POST', credentials: 'same-origin' });
 		const json = await response.json();
 
 		if (json.error) {

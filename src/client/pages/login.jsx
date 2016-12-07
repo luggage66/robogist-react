@@ -10,7 +10,7 @@ export default class LoginPage extends Component {
     render() {
     	return (
             <div style={{textAlign: 'center'}}>
-            	<button onClick={_=>this.openLoginPopup()}>Login with GitHub</button>
+            	<button className="pop-button green" onClick={_=>this.openLoginPopup()}>Login with GitHub</button>
             </div>
         );
     }

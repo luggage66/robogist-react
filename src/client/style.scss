@@ -5,30 +5,30 @@ I'm slowly cleaning it up and adding in scss
 $orange: #FA4940;
 
 * {
-  margin: 0;
-  padding: 0;
-  outline: none;
-  border: none;
-  box-sizing: border-box;
-  font-weight: 300;
+	margin: 0;
+	padding: 0;
+	outline: none;
+	border: none;
+	box-sizing: border-box;
+	font-weight: 300;
 }
 
 *:before,
 *:after {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 html,
 body {
-  height: 100%;
-  width: 100%;
-  font-family: 'Roboto', sans-serif;
-  font-size: 14px;
+	height: 100%;
+	width: 100%;
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
 }
 
 body {
-  background-image: radial-gradient(#f5fffa 0%, gray 100%);
-  padding-top: 35px;
+	background-image: radial-gradient(#f5fffa 0%, gray 100%);
+	padding-top: 35px;
 }
 
 a {
@@ -36,235 +36,203 @@ a {
 }
 
 .wrapper {
-  width: 90%;
-  height: 90%;
-  margin: 0 auto;
-  border-radius: 4px;
-  border: solid 1px rgba(0, 0, 0, 0.6);
-  background: white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .4);
-  position: relative;
+	width: 90%;
+	height: 90%;
+	margin: 0 auto;
+	border-radius: 4px;
+	border: solid 1px rgba(0, 0, 0, 0.6);
+	background: white;
+	box-shadow: 0 0 10px rgba(0, 0, 0, .4);
+	position: relative;
 }
 
 .inner-wrapper {
-  height: calc(100% - 52px);
-  width: 100%;
-  padding: 16px;
-  overflow-y: auto;
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.25);
-  position: relative;
+	height: calc(100% - 52px);
+	width: 100%;
+	padding: 16px;
+	overflow-y: auto;
+	box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.25);
+	position: relative;
 }
 
 .header {
-  height: 48px;
-  font-weight: 400;
-  font-size: 1.1rem;
-  background-repeat: no-repeat;
-  background-position: center center;
+	height: 48px;
+	font-weight: 400;
+	font-size: 1.1rem;
+	background-repeat: no-repeat;
+	background-position: center center;
 }
 
 .header .menu {
-  float: right;
-  line-height: 48px;
-  padding-right: 24px;
+	float: right;
+	line-height: 48px;
+	padding-right: 24px;
 }
 
+.header .menu .pop-button {
+	float: left;
+}
 .pop-button {
-  position: relative;
-  padding: 3px 10px;
-  margin: 4px;
-  float: left;
-  border-radius: 6px;
-  font-size: 1.2rem;
-  color: #efefef;
-  line-height: 1.5em;
-  text-decoration: none;
-  transition-property: transform, border-bottom;
-  transition-duration: 40ms;
-  transition-timing-function: linear;
-  background-color: $orange;
-  border-bottom: 5px solid darken($orange, 20%);
-  &.blue,&.active {
-    background-color: #3498DB;
-    border-bottom: 5px solid #2980B9;
-  }
-  &.green {
-    background-color: #82BF56;
-    border-bottom: 5px solid #669644;
-  }
-  &.yellow {
-    background-color: #F2CF66;
-    border-bottom: 5px solid #D1B358;
-  }
-  &:active {
-    transform: translate(0px, 5px);
-    color: #efefef;
-    border-bottom: 1px solid; 
-  }
-  &:hover {
+	position: relative;
+	padding: 3px 10px;
+	margin: 4px;
+	border-radius: 6px;
+	font-size: 1.2rem;
+	color: #efefef;
+	line-height: 1.5em;
+	text-decoration: none;
+	transition-property: transform, border-bottom;
+	transition-duration: 40ms;
+	transition-timing-function: linear;
+	background-color: $orange;
+	border-bottom: 5px solid darken($orange, 20%);
+	&.blue,&.active {
+		background-color: #3498DB;
+		border-bottom: 5px solid #2980B9;
+	}
+	&.green {
+		background-color: #82BF56;
+		border-bottom: 5px solid #669644;
+	}
+	&.yellow {
+		background-color: #F2CF66;
+		border-bottom: 5px solid #D1B358;
+	}
+	&:active,&.active {
+		transform: translate(0px, 5px);
+		color: #efefef;
+		border-bottom: 1px solid; 
+	}
+	&:hover {
 	color: #cecece;
-  }
+	}
 }
 
 
 .table {
-  margin-top: 18px;
-  width: 100%;
+	margin-top: 18px;
+	width: 100%;
 }
 
 .table table {
-  width: 100%;
-  border-collapse: collapse;
+	width: 100%;
+	border-collapse: collapse;
 }
 
 .table th {
-  font-weight: 400;
+	font-weight: 400;
 }
 
 .table td,
 .table th {
-  text-align: left;
-  text-indent: 4px;
-  padding: 4px 0;
-  border-bottom: 1px solid #ccc;
+	text-align: left;
+	text-indent: 4px;
+	padding: 4px 0;
+	border-bottom: 1px solid #ccc;
 }
 
 .table tbody {
-  position: relative;
+	position: relative;
 }
 
 .table tbody td {
-  transition: background-color 120ms ease-out;
-  white-space: nowrap;
+	transition: background-color 120ms ease-out;
+	padding: 1px 3px;
+	// white-space: nowrap;
 }
 
 .table tbody tr:hover td {
-  background-color: #fffde0;
+	background-color: #fffde0;
 }
 
 .table tbody tr.hasUpdated td {
-  background-color: #ff9191;
+	background-color: #ff9191;
 }
 
 .table tbody tr:nth-child(even) {
-  background-color: #ededed;
+	background-color: #ededed;
 }
 
 .table tbody:empty::after {
-  position: absolute;
-  left: 0;
-  right: 0;
-  padding-top: 64px;
-  content: 'there is nothing to see here.';
-  text-align: center;
+	position: absolute;
+	left: 0;
+	right: 0;
+	padding-top: 64px;
+	content: 'there is nothing to see here.';
+	text-align: center;
 }
 
 .inner-wrapper .footnote {
-  position: absolute;
-  bottom: 4px;
+	position: absolute;
+	bottom: 4px;
 }
 
 [type="checkbox"]:checked,
 [type="checkbox"]:not(:checked) {
-  display: none;
+	display: none;
 }
 
 [type="checkbox"] + label {
-  display: inline-block;
-  cursor: pointer;
-  height: 14px;
-  width: 14px;
-  background: white;
-  color: white;
-  border: 1px solid #888;
-  transition: 100ms all ease-out;
-  position: relative;
-  top: 2px;
+	display: inline-block;
+	cursor: pointer;
+	height: 14px;
+	width: 14px;
+	background: white;
+	color: white;
+	border: 1px solid #888;
+	transition: 100ms all ease-out;
+	position: relative;
+	top: 2px;
 }
 
 [type="checkbox"]:checked + label {
-  background-color: $orange;
-  border: 1px solid $orange;
+	background-color: $orange;
+	border: 1px solid $orange;
 }
 
 [type="checkbox"]:checked + label::after {
-  position: absolute;
-  top: -3px;
-  left: -4px;
-  content: '\2713';
+	position: absolute;
+	top: -3px;
+	left: -4px;
+	content: '\2713';
 }
 
 .table tbody tr.hasUpdated [type="checkbox"] + label::after {
-  position: absolute;
-  top: -9px;
-  right: -26px;
-  font-size: 26px;
-  color: $orange;
-  content: '\26A0';
+	position: absolute;
+	top: -9px;
+	right: -26px;
+	font-size: 26px;
+	color: $orange;
+	content: '\26A0';
 }
 
 .form {
-  position: absolute;
-  background-color: #f3f3f3;
-  width: 340px;
-  height: 180px;
-  top: calc(50% - 90px);
-  left: calc(50% - 170px);
-  padding: 20px;
-  border: 1px solid rgba(0, 0, 0, 0.6);
-  box-shadow: 0 0 10px rgba(0, 0, 0, .8);
-}
 
-.form h3 {
-  margin: 0;
-  padding: 0 0 12px;
-}
+	.control {
 
-.form input[type="text"] {
-  background: transparent;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
-  padding: 1px;
-}
+		margin: 0.6rem 0;
 
-.form input[type="text"]:focus {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
-}
+		h3 {
+			font-weight: 600;
+			font-size: 1.4rem;
+		}
 
-.form input[type="text"]:focus::-webkit-input-placeholder {
-  color: transparent;
-}
+		input,
+		textarea {
+			width: 300px;
+			vertical-align: bottom;
+			border: 1px solid #cecece;
+			padding: 1px 2px;
+		}
 
-.form .save {
-  margin-top: 16px;
-  background-color: $orange;
-  color: #f5f5f5;
-  padding: 4px 7px;
-  border-radius: 2px;
-  cursor: pointer;
-}
+		label { 
+			display: inline-block;
+			width: 120px;
+			vertical-align: top;
+		}
 
-.form .close {
-  position: absolute;
-  top: -9px;
-  right: -9px;
-  height: 18px;
-  width: 18px;
-  border-radius: 50%;
-  background-color: #000;
-  color: #f5f5f5;
-  cursor: pointer;
-}
-
-.form .control {
-  clear: both;
-  padding: 6px;
-}
-
-.form .control label {
-  float: left;
-}
-
-.form .control input,
-.form .control button {
-  float: right;
+		.save {
+			float: right;
+		}
+	}
 }

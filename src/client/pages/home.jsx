@@ -1,26 +1,42 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import { page } from '../dataLoading';
+
+async function getGistList() {
+    const response = await fetch('/api/gist/list?offset=0&limit=3', { 
+        method: 'GET', 
+        credentials: 'same-origin'
+    });
+    const json = await response.json();
+    return json.rows;
+    //return 'rows' in json ? json.rows : [];
+}
+
+@page({
+    queries: {
+        gists: _ => getGistList()
+    }
+})
 
 export default class HomePage extends Component {
-    // static contextTypes = { //must declare which context things ou want
-    //     currentUser: React.PropTypes.object
-    // }
+    static contextTypes = {
+        currentUser: React.PropTypes.object
+    }
     //Logged in as {this.context.currentUser ? this.context.currentUser.login : 'NO ONE'}
 
     render() {
-        const rows = [];
-        for( let i = 0; i < 12; i++ ) {
-            rows.push(
+        const rows = this.props.gists.map((row,i) => {
+            return (
                 <tr key={i}>
                     <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
+                    <td>{row.name}</td>
+                    <td>{row.gistid}</td>
+                    <td>{row.matches}</td>
+                    <td>{row.description}</td>
                     <td>-</td>
                 </tr>
             );
-        }
+        })
         return (
             <div>
                 <h3> Gist Store </h3>
