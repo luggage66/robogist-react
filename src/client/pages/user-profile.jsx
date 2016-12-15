@@ -15,23 +15,23 @@ import { page } from '../dataLoading';
 // })
 
 export default class UserProfilePage extends Component {
-    static contextTypes = {
-        currentUser: React.PropTypes.object
-    }
+	static contextTypes = {
+		currentUser: React.PropTypes.object
+	}
 
-    constructor(props) {
-        super(props);
+	constructor(props) {
+		super(props);
 
-    }
-    render() {
-        // not sure if this can be hit. we redirect on this page.
-        if( this.context.currentUser === null ) {
-            return <div>not authorized</div>
-        }
-        
-        const user = this.context.currentUser;
-        return (
-            <div>{JSON.stringify(user)}</div>
-        );
-    }
+	}
+	render() {
+		// not sure if this can be hit. we redirect on this page.
+		if( this.context.currentUser === null ) {
+			return <div>not authorized</div>
+		}
+		
+		const user = this.context.currentUser;
+		return (
+			<div>{JSON.stringify(user)}</div>
+		);
+	}
 }

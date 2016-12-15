@@ -10,9 +10,9 @@ export default class LogoutPage extends Component {
 			props.authenticationRevokedHandler();
 		})
 	}
-    render() {
-    	return (
-            <div>Logging you out...</div>
-        );
-    }
+	render() {
+		return (
+			<div>Logging you out...</div>
+		);
+	}
 }

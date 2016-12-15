@@ -19,7 +19,8 @@ $orange: #FA4940;
 }
 
 html,
-body {
+body,
+#app-react-container {
 	height: 100%;
 	width: 100%;
 	font-family: 'Roboto', sans-serif;
@@ -233,6 +234,17 @@ a {
 
 		.save {
 			float: right;
+		}
+	}
+}
+
+.pagination {
+	list-style: none;
+	li {
+		display: inline-block;
+		padding: 2px 4px;
+		&.active {
+			border-bottom: 1px solid $orange;
 		}
 	}
 }
