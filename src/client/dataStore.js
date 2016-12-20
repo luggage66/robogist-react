@@ -16,7 +16,7 @@
 // }
 
 async function getGistList(offset) {
-	const response = await fetch(`/api/gist/list?offset=${offset}&limit=6`, { 
+	const response = await fetch(`/api/gist/list?offset=${offset * 6}&limit=6`, { 
 		method: 'GET', 
 		credentials: 'same-origin'
 	});

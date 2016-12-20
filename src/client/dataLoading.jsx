@@ -24,26 +24,37 @@ function makeDataWrapperComponent(Component) {
 				data: null
 			};
 		}
-
-		componentDidMount() {
-			let params = this.props.params; //params from react-router 4
-			let queries = Component.dataComponentConfig.queries;
-
-			// run all queries for this page.
-			let data = {};
+		loadData(newParams = null) {
+			const params = newParams ? newParams : this.props.params;
+			const queries = Component.dataComponentConfig.queries;
+			const data = {};
 			for (let key in queries) {
 				data[key] = queries[key](params);
 			}
 
 			bluebird.props(data).then(data => {
-				//this.data = Object.assign(data, this.props);
 				this.setState({
 					data,
 					dataLoaded: true
 				});
 			});
 		}
-
+		componentDidMount() {
+			this.loadData();
+		}
+		componentWillReceiveProps(a) {
+			let shouldReloadData = false;
+			const newParams = a.params;
+			const oldParams = this.props.params;
+			Object.keys(newParams).forEach( key => {
+				if( oldParams[key] !== newParams[key] ) {
+					shouldReloadData = true;
+				} else {
+					newParams[key] = oldParams[key];
+				}
+			});
+			if( shouldReloadData ) this.loadData(newParams);
+		}
 		render() {
 			const messages = [
 				"640K ought to be enough for anybody",
@@ -77,7 +88,7 @@ function makeDataWrapperComponent(Component) {
 				"it's still faster than you could draw it"
 			];
 			if (this.state.dataLoaded) {
-				return <Component {...this.state.data} />;
+				return <Component {...this.state.data} {...this.props.params} />;
 			}
 			else {
 				return (

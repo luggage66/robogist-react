@@ -7,11 +7,9 @@ import dataStore from '../dataStore';
 @page({
 	queries: {
 		gistList: ({ page = 0 }) => {
-			// console.log('got new page', page);
 			return dataStore.getGistList(page);
 		},
-		gistCount: () => dataStore.getGistCount(),
-		page: ({ page = 0 }) => Number(page)
+		gistCount: () => dataStore.getGistCount()
 	}
 })
 
@@ -25,9 +23,6 @@ export default class HomePage extends Component {
 	handlePageClick(data) {
 		const {selected} = data;
 		browserHistory.push(`/browse/${selected}`);
-	}
-	componentWillReceiveProps(a) {
-		console.log('here', a)
 	}
 	render() {
 		const rows = this.props.gistList.map((details,i) => {
@@ -64,7 +59,7 @@ export default class HomePage extends Component {
 								pageCount={Math.ceil(this.props.gistCount / 6)}
 								marginPagesDisplayed={2}
 								pageRangeDisplayed={5}
-								initialPage={this.props.page}
+								forcePage={Number(this.props.page)}
 								onPageChange={data => this.handlePageClick(data)}
 								containerClassName={"pagination"}
 								subContainerClassName={"pages pagination"}
