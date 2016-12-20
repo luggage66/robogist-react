@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { Router, browserHistory } from 'react-router';
+
+import Nav from './components/nav';
 
 import Pages from './pages';
 
@@ -42,12 +45,11 @@ export default class App extends Component {
 	}
 
 	render() {
-		// build up the UI here. the main app should contain the overall layout I think. 
-		// pages is the content pages. 
-		// I'll also have to manage the Nav's here unless there is too much state passing
-		// and it gets messy. The nav can be built with each page if that is the case. 
 		return (
-			<Pages />
+			<Router history={browserHistory}>
+				<Nav />
+				<Pages />
+			</Router>
 		);
 	}
 }

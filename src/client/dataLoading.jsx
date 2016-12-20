@@ -24,8 +24,7 @@ function makeDataWrapperComponent(Component) {
 				data: null
 			};
 		}
-		loadData(newParams = null) {
-			const params = newParams ? newParams : this.props.params;
+		loadData(params) {
 			const queries = Component.dataComponentConfig.queries;
 			const data = {};
 			for (let key in queries) {
@@ -40,7 +39,7 @@ function makeDataWrapperComponent(Component) {
 			});
 		}
 		componentDidMount() {
-			this.loadData();
+			this.loadData(this.props.params);
 		}
 		componentWillReceiveProps(a) {
 			let shouldReloadData = false;

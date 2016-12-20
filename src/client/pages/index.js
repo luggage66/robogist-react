@@ -1,5 +1,6 @@
 import React from 'react';
-import { Router, Route, browserHistory } from 'react-router';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import App from '../app';
 import Home from './home';
 import AddGist from './add-gist';
 import Login from './login';
@@ -9,8 +10,8 @@ import NotFound from './not-found';
 
 export default function Pages(props) {
 	return (
-		<Router history={browserHistory}>
-			<Route path="/" component={Home} />
+		<Route path="/" component={App}>
+			<IndexRoute component={Home} />
 			<Route path="/browse" component={Home}>
 				<Route path="/browse/:page" component={Home} />
 			</Route>
@@ -23,6 +24,5 @@ export default function Pages(props) {
 			<Route path="/login" component={Login} />
 			<Route path="/logout" component={Logout} />
 			<Route path="*" component={NotFound} />
-		</Router>
+		</Route>
 )};
- 
