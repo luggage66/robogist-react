@@ -1,6 +1,4 @@
 import React from 'react';
-import { observable, asReference } from 'mobx';
-import { observer } from 'mobx-react';
 import bluebird from 'bluebird';
 
 // Will be added as a static function on the component
@@ -16,15 +14,16 @@ function getQuery(queryName, queryArgs) {
 
 function makeDataWrapperComponent(Component) {
 
-	@observer
 	class DataWrapperComponent extends React.Component
 	{
-		@observable dataLoaded = false;
-		@observable data = asReference(null); // I don't care what is inside here.
+		constructor(props, context) {
+			super(props, context);
 
-		// constructor(props, context) {
-		//     super(props, context);
-		// }
+			this.state = {
+				dataLoaded: false,
+				data: null
+			};
+		}
 
 		componentDidMount() {
 			let params = this.props.params; //params from react-router 4
@@ -38,8 +37,10 @@ function makeDataWrapperComponent(Component) {
 
 			bluebird.props(data).then(data => {
 				//this.data = Object.assign(data, this.props);
-				this.data = data;
-				this.dataLoaded = true;
+				this.setState({
+					data,
+					dataLoaded: true
+				});
 			});
 		}
 
@@ -75,8 +76,8 @@ function makeDataWrapperComponent(Component) {
 				"dig on the 'X' for buried treasure... ARRR!",
 				"it's still faster than you could draw it"
 			];
-			if (this.dataLoaded) {
-				return <Component {...this.data} />;
+			if (this.state.dataLoaded) {
+				return <Component {...this.state.data} />;
 			}
 			else {
 				return (
