@@ -1,5 +1,5 @@
 import React from 'react';
-import { Match, Miss, Redirect } from 'react-router';
+import { Router, Route, browserHistory } from 'react-router';
 import Home from './home';
 import AddGist from './add-gist';
 import Login from './login';
@@ -9,61 +9,20 @@ import NotFound from './not-found';
 
 export default function Pages(props) {
 	return (
-	<div>
-
-		<Match pattern="/" exactly component={Home} />
-
-		<Match pattern="/addgist" exactly render={ args => (
-			props.loggedIn ?
-			<AddGist {...props}/> :
-			<Redirect to={
-				{
-					pathname: '/login', 
-					state: {
-						from: args.location
-					}
-				}
-			}/>
-		)} />
-
-		<Match pattern="/login" exactly render={ args => (
-			!props.loggedIn ? 
-			<Login /> : 
-			<Redirect to={
-				{
-					pathname: args.location.state ? args.location.state.from.pathname : '/', 
-					state: {from: args.location}
-				}
-			}/>
-		)} />
-
-		<Match pattern="/logout" exactly render={ args => (
-			props.loggedIn ? 
-			<Logout {...props}/> :
-			<Redirect to={
-				{
-					pathname: '/', 
-					state: {
-						from: args.location
-					}
-				}
-			}/>
-		)} />
-
-		<Match pattern="/profile" exactly render={ args => (
-			props.loggedIn ?
-			<UserProfile {...props}/> :
-			<Redirect to={
-				{
-					pathname: '/login', 
-					state: {
-						from: args.location
-					}
-				}
-			}/>
-		)} />
-
-		<Miss component={NotFound} />
-	</div>
+		<Router history={browserHistory}>
+			<Route path="/" component={Home} />
+			<Route path="/browse" component={Home}>
+				<Route path="/browse/:page" component={Home} />
+			</Route>
+			<Route path="/gist" component={Home} >
+				<Route path="/gist/view/:id" component={AddGist} />
+				<Route path="/gist/edit/:id" component={AddGist} />
+				<Route path="/gist/add" component={AddGist} />
+			</Route>
+			<Route path="/profile" component={UserProfile} />
+			<Route path="/login" component={Login} />
+			<Route path="/logout" component={Logout} />
+			<Route path="*" component={NotFound} />
+		</Router>
 )};
  

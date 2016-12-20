@@ -1,23 +1,15 @@
-//third prty JS
 import React, { Component } from 'react';
-import { BrowserRouter, Link, browserHistory } from 'react-router';
 
-//my JS
-import Header from './components/header';
-import { page } from './dataLoading';
 import Pages from './pages';
 
-//non-JS
-import './style.scss';
+import './assets/style.scss';
 
 export default class App extends Component {
 
-	//define what we provide to children implicitly
 	static childContextTypes = {
 		currentUser: React.PropTypes.object
 	}
 
-	// we use this to pre-fetch data, so it's static.
 	static async getUserInfo() {
 		const response = await fetch('/api/user/info', { method: 'POST', credentials: 'same-origin' });
 		const json = await response.json();
@@ -32,10 +24,6 @@ export default class App extends Component {
 
 	constructor(props) {
 		super(props);
-
-		// here we COPY user from props to state and then only ever use it
-		// from state. This is because the props.user can get out-of-date and
-		// we want to update it on-the-fly.
 		this.state = {
 			currentUser: props.user
 		};
@@ -50,19 +38,16 @@ export default class App extends Component {
 	}
 
 	componentWillMount() {
-		window.authenticationCompleteCallback = _ => this.handleAuthenticationChange(); // this doesn't check shit. just waits for a response. fix
+		window.authenticationCompleteCallback = _ => this.handleAuthenticationChange();
 	}
 
 	render() {
+		// build up the UI here. the main app should contain the overall layout I think. 
+		// pages is the content pages. 
+		// I'll also have to manage the Nav's here unless there is too much state passing
+		// and it gets messy. The nav can be built with each page if that is the case. 
 		return (
-			<BrowserRouter>
-				<div className="wrapper">
-					<Header loggedIn={!!this.state.currentUser} />
-					<div className="inner-wrapper">
-						<Pages loggedIn={!!this.state.currentUser} authenticationRevokedHandler={_ => this.handleAuthenticationChange(false)} />
-					</div>
-				</div> 
-			</BrowserRouter>
+			<Pages />
 		);
 	}
 }

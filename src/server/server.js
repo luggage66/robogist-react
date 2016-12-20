@@ -10,7 +10,7 @@ import query from './modules/db-promise';
 import config from './config';
 
 const app = express();
-const rootPath = `${__dirname}/../../static`; // up to lib, I start it from /lib/server
+const rootPath = `${__dirname}/../static`; // up to lib, I start it from /lib/server
 
 /* auth handling */
 

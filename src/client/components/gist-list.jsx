@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import ReactPaginate from 'react-paginate';
+import { browserHistory, Link } from 'react-router';
 
 export default class GistList extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			gists: [],
-			offset: 0
+			offset: this.props.page * this.props.limit || 0
 		};
 	}
 	async getGistList(offset, limit) {
@@ -25,63 +26,67 @@ export default class GistList extends Component {
 		const json = await response.json();
 		return json.rows;
 	}
-	loadDataFromServer() {
-		console.log(this.props);
+	loadDataFromServer(forceOffset = null) {
+		console.log('loading data');
 		const {limit} = this.props;
-		Promise.all([this.getGistCount(),this.getGistList(this.state.offset,limit)]).then(data => {
+		const offset = forceOffset === null ? this.state.offset : forceOffset;
+		Promise.all([this.getGistCount(),this.getGistList(offset,limit)]).then(data => {
 			const [[{count}],list] = data;
 			this.setState({
 				gists: list, 
-				pageCount: Math.ceil( count / limit )
+				pageCount: Math.ceil( count / limit ),
+				offset: offset
 			});
 		});
 	}
 	handlePageClick(data) {
 		const {selected} = data;
-		const offset = Math.ceil( selected * this.props.limit );
-		this.setState({offset}, _ => {
-			this.loadDataFromServer();
-		});
+		browserHistory.push(`/browse/${selected}`);
+		console.log('pushed history');
+		this.loadDataFromServer(selected * this.props.limit);
 	}
 	componentDidMount() {
-		this.loadDataFromServer();
+		console.log('did mount');
+		this.loadDataFromServer()
 	}
+	componentWillMount() {
+		console.log('will mount');
+	}
+	componentDidUpdate() {
+		console.log('did update');
+	}
+	componentWillUpdate() {
+		console.log('will update');
+	}
+
 	render() {
 		const rows = this.state.gists.map((details,i) => {
-			return (<tr key={i}>
-				<td></td>
-				<td>{details.name}</td>
-				<td>{details.gistid}</td>
-				<td>{details.matches}</td>
-				<td>{details.description}</td>
-				<td></td>
-			</tr>);
+			return (
+				<div className="col-sm-4 col-lg-4 col-md-4" key={i}>
+					<div className="thumbnail">
+						<img src="http://placehold.it/320x150" alt="" />
+						<div className="caption">
+							<h4><Link to={`/view/${details.id}`}>{details.name}</Link>
+							</h4>
+							<p> {details.description} </p>
+						</div>
+						<div className="ratings">
+							<p className="pull-right">15 votes</p>
+							<p>
+								<span className="fa fa-star-o"></span>
+								<span className="fa fa-star-o"></span>
+								<span className="fa fa-star-o"></span>
+								<span className="fa fa-star-o"></span>
+								<span className="fa fa-star-o"></span>
+							</p>
+						</div>
+					</div>
+				</div>
+			);
 		});
 		return (
-			<div className="table">
-				<table>
-					<thead>
-						<tr>
-						<th></th>
-						<th>
-							Name
-						</th>
-						<th>
-							ID
-						</th>
-						<th>
-							Matches
-						</th>
-						<th>
-							Description
-						</th>
-						<th></th>
-						</tr>
-					</thead>
-					<tbody className="gist-list">
-						{rows}
-					</tbody>
-				</table>
+			<div className="col-lg-12">
+				{rows}
 				<ReactPaginate  previousLabel={"previous"}
 								nextLabel={"next"}
 								breakLabel={<a href="">...</a>}
@@ -89,6 +94,7 @@ export default class GistList extends Component {
 								pageCount={this.state.pageCount}
 								marginPagesDisplayed={2}
 								pageRangeDisplayed={5}
+								initialPage={Number(this.props.page) || 0}
 								onPageChange={data => this.handlePageClick(data)}
 								containerClassName={"pagination"}
 								subContainerClassName={"pages pagination"}
